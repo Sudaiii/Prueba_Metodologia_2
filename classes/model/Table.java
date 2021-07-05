@@ -41,5 +41,7 @@ public class Table{
         }
     }
 
-
+    public void revealTile(int column, int row){
+        grid[column][row].reveal();
+    }
 }
