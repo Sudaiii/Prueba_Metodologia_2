@@ -1,7 +1,6 @@
 package classes.model;
 
 import java.util.Random;
-import classes.model.Tile;
 
 public class Table{
     Tile[][] grid;
