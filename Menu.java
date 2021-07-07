@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,13 +20,14 @@ public class Menu extends JFrame {
    
     private JButton boton;
     private JButton boton2;
-   
+    private JButton boton3;
     
     public Menu(){
         
         setSize(400,400);
         setTitle("Menu Juego");
         setLocationRelativeTo(null);
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
         
         iniciarComponentes();
          
@@ -64,12 +66,23 @@ public class Menu extends JFrame {
         
         boton = new JButton("Iniciar Juego");
         boton.setBounds(120,70,150,40);
+        boton.setForeground(new Color(255,255,255));
+        boton.setBackground(Color.green);
         panel.add(boton);
           
         
         boton2 = new JButton("Dificultad del Juego");
         boton2.setBounds(120,170,150,40);
+        boton2.setForeground(new Color(255,255,255));
+        boton2.setBackground(Color.green);
         panel.add(boton2);
+        
+        
+        boton3 = new JButton("Salir del Juego");
+        boton3.setBounds(120,270,150,40);
+        boton3.setForeground(new Color(255,255,255));
+        boton3.setBackground(Color.red);
+        panel.add(boton3);
         
         
         ActionListener oyentedeaccion = new ActionListener(){
@@ -78,6 +91,8 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 
                 //interfaz del tablero
+                dispose();
+                
               
             }
         };
@@ -90,7 +105,8 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
-               
+               dispose();
+                
                 NivelJuego ventana = new NivelJuego();
                 
                 ventana.setVisible(true);
@@ -101,6 +117,24 @@ public class Menu extends JFrame {
         };
         
         boton2.addActionListener(oyentedeaccion2); 
+        
+        
+        
+        ActionListener oyentedeaccion3 = new ActionListener(){
+      
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+               System.exit(0);
+                
+            }
+        };
+        
+        boton3.addActionListener(oyentedeaccion3); 
+        
+        
+        
+        
         
         
     }
