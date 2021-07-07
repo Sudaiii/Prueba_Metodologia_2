@@ -13,7 +13,7 @@ public class Tile {
         return state;
     }
 
-    public int getAdyacentCovid() {
+    public int getValue() {
         return value;
     }
 
