@@ -23,7 +23,8 @@ public class Game {
 
     public int revealTile(int column, int row){
         if(finished == 0){
-            int tileValue = table.revealTile(column, row);
+            table.revealTile(column, row);
+            int tileValue = table.getValueOfTile(column, row);
             if(tileValue == 9){
                 finished = -1;
             }

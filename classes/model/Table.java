@@ -29,6 +29,16 @@ public class Table{
     }
 
     /**
+     * Returns the value of the tile in the position entered
+     * @param column column the tile is in
+     * @param row row the tile is in
+     * @return value of the tile (0-8: no Covid, 9: Covid)
+     */
+    public int getValueOfTile(int column, int row){
+        return grid[column][row].getValue();
+    }
+
+    /**
      * Fills the grid with covid tiles randomly.
      */
     private void fillCovid(){
@@ -67,11 +77,20 @@ public class Table{
      * Reveals the tile selected.
      * @param column column the tile is in
      * @param row row the tile is in
-     * @return value of the tile revealed (0-8 = number of adyacent Covid tiles, 9 = tile has Covid)
      */
-    public int revealTile(int column, int row){
+    public void revealTile(int column, int row){
+        if(grid[column][row].isRevealed())  return;
         grid[column][row].reveal();
-        return grid[column][row].getValue();
+        if(grid[column][row].getAdyacentCovid() == 0){
+            int[] moves={-1,0,1};
+            for(int i = 0; i < moves.length; i++){
+                for(int j = 0; j < moves.length; j++){
+                    if(column+moves[i]>=0 && column+moves[i] < grid.length && row + moves[j] >= 0 && row + moves[j] < grid.length){
+                        revealTile(column + moves[i] , row + moves[j]);
+                    }
+                }
+            }
+        }
     }
 
     /**
