@@ -41,6 +41,17 @@ public class Table{
     }
 
     public void revealTile(int column, int row){
+        if(grid[column][row].isRevealed())  return;
         grid[column][row].reveal();
+        if(grid[column][row].getAdyacentCovid() == 0){
+            int[] moves={-1,0,1};
+            for(int i = 0; i < moves.length; i++){
+                for(int j = 0; j < moves.length; j++){
+                    if(column+moves[i]>=0 && column+moves[i] < grid.length && row + moves[j] >= 0 && row + moves[j] < grid.length){
+                        revealTile(column + moves[i] , row + moves[j]);
+                    }
+                }
+            }
+        }
     }
 }
