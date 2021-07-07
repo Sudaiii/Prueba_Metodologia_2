@@ -8,7 +8,34 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Logic {
+public class Game {
+    Table table;
+    //finished = 0: game isn't over.
+    //finished = 1: game is over, player won.
+    //finished = -1: game is over, player lost.
+    int points, finished;
+
+    public Game(int size){
+        table = new Table(size);
+        finished = 0;
+        points = 0; //TO-DO: Determinar como puntuar al jugador
+    }
+
+    public int revealTile(int column, int row){
+        if(finished == 0){
+            int tileValue = table.revealTile(column, row);
+            if(tileValue == 9){
+                finished = -1;
+            }
+            else{
+                if(table.checkVictory()){
+                    finished = 1;
+                }
+            }
+        }
+        return finished;
+    }
+
     public int levelSelector(){
         Scanner x = new Scanner(System.in);
         int option = 0;
@@ -18,10 +45,20 @@ public class Logic {
             System.out.println("2. Intermedio");
             System.out.println("3. Dificil");
             option = x.nextInt();
-            if (option == 1){ return 9;}
-            else if (option == 2){return 16;}
-            else if (option == 3){return 32;}
-            else{System.out.println("Opcion Invalida, intente nuevamente");}
+            if (option == 1){ 
+                x.close();
+                return 9;
+            }
+            else if (option == 2){
+                x.close();
+                return 16;
+            }
+            else if (option == 3){
+                x.close();
+                return 32;
+            }
+            else{
+                System.out.println("Opcion Invalida, intente nuevamente");}
         }
     }
 
